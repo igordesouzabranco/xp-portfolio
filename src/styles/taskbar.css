@@ -1,0 +1,131 @@
+/* Barra de tarefas do Windows XP (recriada do zero em CSS) */
+
+.taskbar {
+  position: relative;
+  z-index: 1000; /* fica POR CIMA das janelas */
+  height: var(--xp-taskbar-height);
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(
+    180deg,
+    #3f8cf3 0%,
+    #245edb 6%,
+    #1941a5 45%,
+    #1941a5 88%,
+    #16389a 100%
+  );
+  border-top: 1px solid #4c8ef7;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ---- Botão Iniciar (verde, canto direito arredondado) ---- */
+.taskbar__start {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 22px 2px 12px;
+  border: none;
+  border-right: 2px solid #1e5f1e;
+  border-radius: 0 14px 14px 0;
+  background: linear-gradient(180deg, #7ede7e 0%, #43a543 30%, #2c7a2c 85%, #246624 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.taskbar__start:hover { filter: brightness(1.08); }
+
+.taskbar__start--active,
+.taskbar__start:active {
+  background: linear-gradient(180deg, #2c7a2c, #1e5f1e);
+}
+
+.taskbar__start:focus-visible { outline: 2px solid #ffe94d; outline-offset: -3px; }
+
+.taskbar__start-icon { width: 18px; height: 18px; }
+
+/* ---- Botões das janelas abertas ---- */
+.taskbar__tasks {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  overflow-x: auto;
+}
+
+.taskbar__task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  max-width: 170px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #1a4fbb;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #4e8ef5, #2a63d8);
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.taskbar__task:hover { filter: brightness(1.12); }
+
+/* Janela focada: botão "pressionado" */
+.taskbar__task--active {
+  background: linear-gradient(180deg, #1c4da8, #2a63d8);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.taskbar__task:focus-visible { outline: 2px solid #ffe94d; outline-offset: 1px; }
+
+.taskbar__task-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- Bandeja do sistema ---- */
+.taskbar__tray {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: linear-gradient(180deg, #18a2e8 0%, #0e79d0 40%, #0b63b4 100%);
+  border-left: 1px solid #39b6ff;
+}
+
+.taskbar__tray-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.taskbar__tray-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+.taskbar__tray-btn:focus-visible { outline: 2px solid #ffe94d; }
+
+.taskbar__tray-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.taskbar__clock {
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  min-width: 42px;
+}

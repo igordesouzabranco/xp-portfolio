@@ -1,0 +1,106 @@
+/* Papel de parede: céu em degradê + colinas, 100% CSS.
+   Nenhuma imagem da Microsoft é usada. */
+
+.desktop {
+  position: relative;
+  /* ocupa o espaço que sobra acima da barra de tarefas */
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #2f6fc4 0%,
+    #6aa9e0 45%,
+    #a8d5f2 75%,
+    #d9eefb 100%
+  );
+}
+
+/* Colinas: elipses gigantes cortadas pela borda do desktop */
+.desktop__hill {
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+}
+
+.desktop__hill--back {
+  left: -35%;
+  width: 95%;
+  bottom: -8%;
+  height: 42%;
+  background: #5fa832;
+}
+
+.desktop__hill--front {
+  right: -35%;
+  width: 105%;
+  bottom: -28%;
+  height: 62%;
+  background: linear-gradient(180deg, #8bc74a, #47821f);
+}
+
+/* Grade de ícones: no desktop preenche de cima pra baixo
+   (como o XP), no celular vira grade horizontal */
+.desktop__icons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+  height: 100%;
+  padding: 10px;
+}
+
+.icon {
+  width: 86px;
+  padding: 6px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: 1px dotted transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background: rgba(0, 60, 160, 0.35);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.icon:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+  background: rgba(0, 60, 160, 0.5);
+}
+
+.icon__image {
+  font-size: 34px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
+}
+
+.icon__label {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+  line-height: 1.2;
+}
+
+/* Celular: ícones viram grade (requisito 6) */
+@media (max-width: 640px) {
+  .desktop__icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+    align-content: start;
+    gap: 14px 4px;
+    height: auto;
+  }
+
+  .icon {
+    width: auto;
+  }
+}

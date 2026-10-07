@@ -1,0 +1,108 @@
+/* Tela de carregamento — layout inspirado no boot do XP,
+   mas com marca própria (nenhum asset da Microsoft). */
+
+.bootload {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ---- Bandeira ---- */
+.bootload__flag {
+  filter: drop-shadow(0 6px 18px rgba(111, 177, 255, 0.5));
+  animation: bootload-flag 3s ease-in-out infinite alternate;
+}
+
+@keyframes bootload-flag {
+  from { transform: rotate(-2deg) translateY(0); }
+  to { transform: rotate(2deg) translateY(-6px); }
+}
+
+/* ---- Logo central ---- */
+.bootload__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.bootload__logo-xp {
+  font-size: 76px;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: -2px;
+  background: linear-gradient(180deg, #ffd23f, #f5a623 55%, #e8890c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+.bootload__logo-name {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* ---- Barra de progresso ---- */
+.bootload__bar {
+  position: relative;
+  width: 212px;
+  height: 18px;
+  border: 2px solid #b7b7b7;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+/* Faixa com os 3 blocos, deslizando da esquerda pra direita */
+.bootload__blocks {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: flex;
+  gap: 8px;
+  animation: bootload-slide 2.2s linear infinite;
+}
+
+.bootload__block {
+  width: 44px;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #6fb1ff, #2a6fe0 55%, #1b4fb8);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55);
+}
+
+@keyframes bootload-slide {
+  from {
+    transform: translateX(-160px);
+  }
+  to {
+    transform: translateX(218px);
+  }
+}
+
+/* ---- Rodapé ---- */
+.bootload__copyright {
+  position: absolute;
+  left: 24px;
+  bottom: 18px;
+  font-size: 12.5px;
+  color: #cfcfcf;
+}
+
+.bootload__brand {
+  position: absolute;
+  right: 26px;
+  bottom: 18px;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+  color: #e8e8e8;
+}

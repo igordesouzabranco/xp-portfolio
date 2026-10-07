@@ -1,0 +1,42 @@
+/* Reset básico: tira margens/padding padrão do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte estilo XP: Tahoma (XP real) com fallbacks */
+:root {
+  --xp-blue-dark: #0a246a;
+  --xp-blue-light: #3a6ea5;
+  --xp-green: #3c963c;
+  --xp-taskbar-height: 40px;
+}
+
+body {
+  font-family: Tahoma, 'Segoe UI', sans-serif;
+}
+
+/* Container do "sistema operacional": empilha desktop + taskbar */
+.xp-os {
+  position: relative; /* ancora as janelas (position: absolute) */
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ---------- Tela de boot/login (estilo em styles/boot.css) ---------- */
+
+/* Acessibilidade: quase nada se move para quem pediu menos animação */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

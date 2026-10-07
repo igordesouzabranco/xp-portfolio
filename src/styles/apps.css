@@ -1,0 +1,789 @@
+/* ============ Botão genérico estilo XP ============ */
+.xp-button {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid #7a92b5;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #fdfdfd, #e4eaf4 60%, #d4dcee);
+  color: #123;
+  font-family: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.xp-button:hover:not(:disabled) {
+  border-color: #e8912d;
+  background: linear-gradient(180deg, #fff, #fff3e0 60%, #ffe1b8);
+}
+
+.xp-button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.xp-button:focus-visible {
+  outline: 2px solid #0a47a9;
+  outline-offset: 1px;
+}
+
+.xp-button--primary {
+  border-color: #2c7a2c;
+  background: linear-gradient(180deg, #7ede7e, #43a543 60%, #2c7a2c);
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+.xp-button--primary:hover:not(:disabled) {
+  border-color: #1e5f1e;
+  background: linear-gradient(180deg, #8fe98f, #4aad4a 60%, #328a32);
+}
+
+/* ============ Meu Computador (Explorer) ============ */
+.explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+}
+
+.explorer__toolbar {
+  display: flex;
+  gap: 14px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #333;
+  background: linear-gradient(180deg, #fafbfd, #eef2f9);
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.explorer__tool--off { color: #aab4c8; }
+
+.explorer__address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #f4f6fa;
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.explorer__address-label { color: #555; }
+
+.explorer__address-box {
+  flex: 1;
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #7a92b5;
+}
+
+.explorer__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: auto;
+}
+
+/* Painel lateral azul do XP */
+.explorer__pane {
+  width: 190px;
+  flex-shrink: 0;
+  padding: 12px;
+  background: linear-gradient(180deg, #7ba7e8, #5a8ede);
+  color: #fff;
+}
+
+.explorer__pane-group {
+  margin-bottom: 14px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 4px;
+}
+
+.explorer__pane-group h3 {
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #fff9c0;
+}
+
+.explorer__pane-group p {
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.explorer__main {
+  flex: 1;
+  padding: 18px 22px;
+  color: #222;
+}
+
+.explorer__main h2 { color: #0a246a; margin-bottom: 8px; }
+
+.explorer__main h3 { margin: 18px 0 8px; color: #0a47a9; font-size: 15px; }
+
+.explorer__lead {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #444;
+}
+
+.explorer__list {
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.explorer__list code {
+  padding: 1px 5px;
+  background: #eef2f9;
+  border: 1px solid #c8d2e4;
+  border-radius: 3px;
+}
+
+.explorer__status {
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #333;
+  background: #f0f3f9;
+  border-top: 1px solid #c8d2e4;
+}
+
+/* ============ Meus Projetos ============ */
+.projects {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f4f6fa;
+}
+
+.projects__bar {
+  padding: 5px 10px;
+  background: linear-gradient(180deg, #fafbfd, #eef2f9);
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.projects__url {
+  display: block;
+  padding: 3px 8px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #7a92b5;
+  color: #345;
+}
+
+.projects__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px 20px;
+}
+
+.projects__body h2 { color: #0a246a; margin-bottom: 4px; }
+
+.projects__subtitle {
+  font-size: 12.5px;
+  color: #667;
+  margin-bottom: 14px;
+}
+
+.projects__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 16px;
+  text-align: center;
+  color: #445;
+}
+
+.projects__state--error { color: #a1260f; }
+
+.projects__hint { font-size: 13px; color: #667; }
+
+.projects__spinner {
+  width: 34px;
+  height: 34px;
+  border: 4px solid #c8d2e4;
+  border-top-color: #0a47a9;
+  border-radius: 50%;
+  animation: projects-spin 0.9s linear infinite;
+}
+
+@keyframes projects-spin {
+  to { transform: rotate(360deg); }
+}
+
+.projects__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.projects__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #c8d2e4;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(10, 36, 106, 0.12);
+}
+
+.projects__name {
+  font-size: 14.5px;
+  font-weight: bold;
+  color: #0a47a9;
+  text-decoration: none;
+}
+
+.projects__name:hover { text-decoration: underline; }
+
+.projects__desc {
+  flex: 1;
+  font-size: 12.5px;
+  color: #445;
+  line-height: 1.45;
+}
+
+.projects__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #667;
+}
+
+.projects__lang { display: inline-flex; align-items: center; gap: 5px; }
+
+.projects__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f5a623;
+}
+
+/* ============ Bloco de Notas ============ */
+.notepad {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+}
+
+.notepad__menubar {
+  display: flex;
+  gap: 16px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  color: #222;
+  background: #f4f6fa;
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.notepad__text {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #111;
+  background: #fff;
+}
+
+/* ============ Internet Explorer (fake) ============ */
+.ie {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+}
+
+.ie__menubar {
+  display: flex;
+  gap: 14px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  background: #f4f6fa;
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.ie__toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 5px 10px;
+  background: linear-gradient(180deg, #fafbfd, #eef2f9);
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.ie__tool {
+  display: grid;
+  place-content: center;
+  width: 26px;
+  height: 24px;
+  font-size: 13px;
+  background: linear-gradient(180deg, #fdfdfd, #e4eaf4);
+  border: 1px solid #b7c3d8;
+  border-radius: 3px;
+}
+
+.ie__tool--off { opacity: 0.45; }
+
+.ie__address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #f4f6fa;
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.ie__address-label { color: #555; }
+
+.ie__address-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: #fff;
+  border: 1px solid #7a92b5;
+}
+
+.ie__go {
+  padding: 3px 12px;
+  border: 1px solid #7a92b5;
+  background: linear-gradient(180deg, #fdfdfd, #e4eaf4);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ie__page {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 22px 28px;
+}
+
+.ie__page h1 {
+  color: #0a246a;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.ie__lead {
+  font-size: 14.5px;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+.ie__contacts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ie__contacts li {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f7f9fd;
+  border: 1px solid #d8e0ef;
+  border-radius: 4px;
+}
+
+.ie__contacts li > span:first-child { grid-row: span 2; font-size: 18px; }
+
+.ie__contacts a {
+  color: #0a47a9;
+  font-size: 14px;
+  font-weight: bold;
+  word-break: break-all;
+  text-decoration: none;
+}
+
+.ie__contacts a:hover { text-decoration: underline; }
+
+.ie__tag {
+  grid-column: 2;
+  font-size: 12px;
+  color: #667;
+}
+
+.ie__mono {
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ie__footer-note {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed #c8d2e4;
+  font-size: 13px;
+  color: #667;
+}
+
+.ie__status {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #333;
+  background: #f0f3f9;
+  border-top: 1px solid #c8d2e4;
+}
+
+/* ---- Site dentro do IE: repositórios + página de repo ---- */
+button.ie__tool {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button.ie__tool:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.ie__section {
+  margin-top: 24px;
+}
+
+.ie__section h2 {
+  color: #0a246a;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.ie__repos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ie__repo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  background: #f7f9fd;
+  border: 1px solid #d8e0ef;
+  border-radius: 4px;
+}
+
+.ie__repo-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ie__repo-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0a47a9;
+}
+
+.ie__repo-desc {
+  font-size: 12.5px;
+  color: #556;
+  margin-top: 2px;
+}
+
+.ie__repo-page h1 {
+  margin-top: 14px;
+}
+
+.ie__repo-page .projects__meta {
+  margin-bottom: 8px;
+}
+
+.ie__readme {
+  margin: 16px 0;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #d8e0ef;
+  border-left: 4px solid #0a47a9;
+  border-radius: 3px;
+}
+
+.ie__readme h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #667;
+  margin-bottom: 6px;
+}
+
+.ie__readme p {
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.ie__repo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ============ Prompt de Comando ============ */
+.terminal {
+  position: relative; /* contexto pro bonequinho do easter egg */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px 10px;
+  background: #0c0c0c;
+  color: #cccccc;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 13.5px;
+}
+
+.terminal__output {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal__line { line-height: 1.45; }
+
+.terminal__prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+.terminal__label { white-space: nowrap; }
+
+.terminal__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #cccccc;
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: #cccccc;
+}
+
+/* ---- Easter egg: bonequinho do meme "6 7" (comando `67`) ---- */
+.terminal__meme {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none; /* não atrapalha digitar */
+  z-index: 4;
+  animation: meme-in 0.25s ease-out;
+}
+
+.terminal__meme-num {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+  color: #ffe94d;
+  text-shadow: 0 2px 0 #000, 0 0 10px rgba(255, 233, 77, 0.6);
+  animation: meme-num 0.34s ease-in-out infinite alternate;
+}
+
+.terminal__meme-num:last-child { animation-delay: 0.17s; }
+
+.terminal__meme-guy {
+  width: 76px;
+  height: 98px;
+  animation: meme-dance 0.34s ease-in-out infinite alternate;
+}
+
+@keyframes meme-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes meme-dance {
+  from { transform: translateY(0) rotate(-7deg); }
+  to { transform: translateY(-14px) rotate(7deg); }
+}
+
+@keyframes meme-num {
+  from { transform: translateY(2px) scale(1); }
+  to { transform: translateY(-8px) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal__meme,
+  .terminal__meme-num,
+  .terminal__meme-guy {
+    animation: none;
+  }
+}
+
+/* ============ Currículo ============ */
+.resume {
+  padding: 20px 24px;
+  background: #f4f6fa;
+  height: 100%;
+  overflow: auto;
+}
+
+.resume__hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.resume__avatar {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-content: center;
+  font-size: 23px;
+  font-weight: bold;
+  color: #0a246a;
+  background: linear-gradient(180deg, #ffe94d, #f5a623);
+  border: 3px solid #0a47a9;
+  border-radius: 8px;
+}
+
+.resume__hero h2 { color: #0a246a; }
+
+.resume__hero p { font-size: 13.5px; color: #556; }
+
+.resume__facts {
+  margin-bottom: 18px;
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.8;
+}
+
+.resume__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+
+/* ============ Lixeira ============ */
+.trash {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+}
+
+.trash__toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  background: linear-gradient(180deg, #fafbfd, #eef2f9);
+  border-bottom: 1px solid #c8d2e4;
+}
+
+.trash__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.trash__list {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+  overflow: auto;
+  list-style: none;
+}
+
+.trash__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.trash__item:hover {
+  background: #e8f0fd;
+  border-color: #b7cbe8;
+}
+
+.trash__item--selected {
+  background: #0a47a9;
+  color: #fff;
+}
+
+.trash__size {
+  margin-left: auto;
+  font-size: 11.5px;
+  opacity: 0.75;
+}
+
+.trash__empty {
+  padding: 24px;
+  text-align: center;
+  color: #667;
+  font-size: 13.5px;
+}
+
+.trash__details {
+  width: 200px;
+  flex-shrink: 0;
+  padding: 14px;
+  background: linear-gradient(180deg, #7ba7e8, #5a8ede);
+  color: #fff;
+  border-left: 1px solid #4a7cd0;
+}
+
+.trash__details h3 {
+  font-size: 13.5px;
+  color: #fff9c0;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.trash__details p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+/* ============ Responsivo dos apps ============ */
+@media (max-width: 640px) {
+  .explorer__pane,
+  .trash__details {
+    display: none;
+  }
+
+  .projects__list {
+    grid-template-columns: 1fr;
+  }
+
+  .ie__page {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,172 @@
+/* Janela estilo Windows XP (feita do zero, sem xp.css) */
+
+.window {
+  position: absolute; /* posicionada dentro de .xp-os */
+  width: min(720px, calc(100vw - 24px));
+  height: min(520px, calc(100vh - var(--xp-taskbar-height) - 24px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #ece9d8;
+  border: 2px solid #0a246a;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* Barra de título: degradê azul (o coração visual do XP) */
+.window__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 4px 4px 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  background: linear-gradient(180deg, #3f8cf3 0%, #2064d8 12%, #0a47a9 55%, #0a3a94 90%, #1c62c8 100%);
+}
+
+.window__icon {
+  font-size: 16px;
+}
+
+.window__title {
+  flex: 1;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window__controls {
+  display: flex;
+  gap: 2px;
+}
+
+/* Botões minimizar/maximizar/fechar */
+.window__btn {
+  width: 22px;
+  height: 20px;
+  display: grid;
+  place-content: center;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #4d9bff, #1a5fd0);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.window__btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.window__btn--close {
+  background: linear-gradient(180deg, #f58b74, #d13a1f);
+}
+
+.window__btn:not(:disabled):hover {
+  filter: brightness(1.15);
+}
+
+.window__btn:focus-visible {
+  outline: 2px solid #ffe94d;
+  outline-offset: 1px;
+}
+
+/* Corpo da janela: o app renderiza aqui */
+.window__content {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #fff;
+}
+
+/* Maximizada: cobre o desktop inteiro (menos a barra de tarefas).
+   !important vence os estilos inline de left/top/width/height. */
+.window--maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: calc(100% - var(--xp-taskbar-height)) !important;
+  border-radius: 0;
+}
+
+/* ---- Alças de redimensionamento (bordas e cantos) ---- */
+.window__resize {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Lados (borda fina de 6px) */
+.window__resize--n,
+.window__resize--s {
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: ns-resize;
+}
+.window__resize--n { top: -3px; }
+.window__resize--s { bottom: -3px; }
+
+.window__resize--e,
+.window__resize--w {
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.window__resize--e { right: -3px; }
+.window__resize--w { left: -3px; }
+
+/* Cantos (quadrados de 12px) */
+.window__resize--ne,
+.window__resize--nw,
+.window__resize--se,
+.window__resize--sw {
+  width: 12px;
+  height: 12px;
+}
+.window__resize--ne { top: -3px; right: -3px; cursor: nesw-resize; }
+.window__resize--nw { top: -3px; left: -3px; cursor: nwse-resize; }
+.window__resize--se { bottom: -3px; right: -3px; cursor: nwse-resize; }
+.window__resize--sw { bottom: -3px; left: -3px; cursor: nesw-resize; }
+
+/* Maximizada não redimensiona */
+.window--maximized .window__resize {
+  display: none;
+}
+
+/* Janela INATIVA: barra de título apagada (como no XP) */
+.window--inactive .window__titlebar {
+  background: linear-gradient(180deg, #7ba7e8 0%, #6a94d8 45%, #5d87c6 100%);
+  color: #e3ecfb;
+}
+
+.window--inactive .window__btn {
+  background: linear-gradient(180deg, #a8c4ef, #7ea3de);
+}
+
+.window--inactive .window__btn--close {
+  background: linear-gradient(180deg, #e8a191, #cf7059);
+}
+
+/* Celular: janela ocupa a tela inteira, sem arrastar (requisito 6) */
+@media (max-width: 640px) {
+  .window {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: calc(100% - var(--xp-taskbar-height)) !important;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .window__resize {
+    display: none;
+  }
+}
