@@ -4,6 +4,11 @@ const REPOS_URL =
   'https://api.github.com/users/igordesouzabranco/repos?sort=updated&per_page=30'
 const GITHUB_USER = 'igordesouzabranco'
 
+// Busca o commit mais recente do autor (ordenado pela data do commit)
+const LAST_COMMIT_URL =
+  `https://api.github.com/search/commits?q=author:${GITHUB_USER}` +
+  '&sort=committer-date&order=desc&per_page=1'
+
 // Decodifica o conteúdo base64 do README (a API devolve assim)
 function decodeBase64Utf8(base64) {
   const bytes = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0))
@@ -25,6 +30,18 @@ function extractBrief(text) {
     }
   }
   return ''
+}
+
+// Monta um objeto enxuto com os dados do commit (o item da busca da API)
+function parseCommit(item) {
+  return {
+    sha: item.sha,
+    // A mensagem pode ter várias linhas: usamos só a 1ª (o título)
+    message: item.commit.message.split('\n')[0],
+    repoName: item.repository.name,
+    repoUrl: item.repository.html_url,
+    commitUrl: item.html_url,
+  }
 }
 
 // Internet Explorer (fake) → site pessoal com repositórios + contato.
@@ -55,6 +72,31 @@ function Browser() {
   useEffect(() => {
     loadRepos()
   }, [loadRepos])
+
+  // Último commit (busca separada, com loading/erro igual aos repos)
+  const [commitStatus, setCommitStatus] = useState('loading') // loading | ready | error
+  const [lastCommit, setLastCommit] = useState(null)
+
+  const loadLastCommit = useCallback(() => {
+    setCommitStatus('loading')
+    fetch(LAST_COMMIT_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`)
+        return response.json()
+      })
+      .then((data) => {
+        if (!data.items || data.items.length === 0) {
+          throw new Error('nenhum commit encontrado')
+        }
+        setLastCommit(parseCommit(data.items[0]))
+        setCommitStatus('ready')
+      })
+      .catch(() => setCommitStatus('error'))
+  }, [])
+
+  useEffect(() => {
+    loadLastCommit()
+  }, [loadLastCommit])
 
   // Ao abrir um repo: busca o README para montar o resumo breve
   useEffect(() => {
@@ -195,6 +237,61 @@ function Browser() {
               Desenvolvedor em formação — veja meus repositórios e fale comigo
               pelos canais abaixo.
             </p>
+
+            {/* ---------- Último commit: repo, código e mensagem ---------- */}
+            <section className="ie__section" aria-live="polite">
+              <h2>Último commit</h2>
+
+              {commitStatus === 'loading' && (
+                <div className="projects__state" role="status">
+                  <span className="projects__spinner" aria-hidden="true" />
+                  <p>Buscando meu último commit…</p>
+                </div>
+              )}
+
+              {commitStatus === 'error' && (
+                <div className="projects__state projects__state--error" role="alert">
+                  <p>⚠️ Não foi possível ler o último commit.</p>
+                  <button
+                    type="button"
+                    className="xp-button"
+                    onClick={loadLastCommit}
+                  >
+                    Tentar novamente
+                  </button>
+                </div>
+              )}
+
+              {commitStatus === 'ready' && lastCommit && (
+                <div className="ie__commit">
+                  <a
+                    className="ie__commit-repo"
+                    href={lastCommit.repoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    📁 {lastCommit.repoName}
+                  </a>
+                  <a
+                    className="ie__commit-sha"
+                    href={lastCommit.commitUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Abrir o commit no GitHub"
+                  >
+                    {lastCommit.sha.slice(0, 7)}
+                  </a>
+                  <a
+                    className="ie__commit-msg"
+                    href={lastCommit.commitUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {lastCommit.message}
+                  </a>
+                </div>
+              )}
+            </section>
 
             <section className="ie__section">
               <h2>Repositórios no GitHub</h2>

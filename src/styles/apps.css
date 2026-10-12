@@ -539,6 +539,47 @@ button.ie__tool:disabled {
   gap: 10px;
 }
 
+/* Cartão do último commit (repo + código + mensagem, tudo link) */
+.ie__commit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px 12px;
+  background: #f7f9fd;
+  border: 1px solid #d8e0ef;
+  border-left: 4px solid #0a47a9;
+  border-radius: 4px;
+}
+
+.ie__commit a {
+  color: #0a47a9;
+  text-decoration: none;
+}
+
+.ie__commit a:hover { text-decoration: underline; }
+
+.ie__commit-repo {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ie__commit-sha {
+  padding: 2px 7px;
+  background: #e8edf7;
+  border: 1px solid #c8d2e4;
+  border-radius: 3px;
+  font-family: Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.ie__commit-msg {
+  flex: 1 1 220px;
+  min-width: 0;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}
+
 /* ============ Prompt de Comando ============ */
 .terminal {
   position: relative; /* contexto pro bonequinho do easter egg */
