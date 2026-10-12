@@ -63,16 +63,6 @@ npm run build    # valida o projeto (o lint do oxlint é bloqueado por política
 - **Acessibilidade**: navegação por teclado, `aria-label` nos controles e
   `prefers-reduced-motion` respeitado.
 
-## Deploy no Netlify
-
-1. Suba o projeto pro GitHub.
-2. No Netlify: **Add new site → Import an existing project**.
-3. O `netlify.toml` já está configurado (`npm run build`, pasta `dist`).
-
-Depois disso, basta `git push` — o Netlify redesenha o site sozinho.
-
-Ou pela CLI: `npm i -g netlify-cli && netlify init`.
-
 ## Estrutura
 
 ```
